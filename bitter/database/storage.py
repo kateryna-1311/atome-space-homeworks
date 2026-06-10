@@ -1,7 +1,7 @@
 from typing import TypedDict
 
 class User(TypedDict):
-    name:str
+    name: str
     posts: list[int]
     followers: list[str]
     following: list[str]
