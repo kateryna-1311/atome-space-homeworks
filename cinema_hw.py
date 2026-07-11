@@ -1,4 +1,4 @@
-class CinemaHall():
+class CinemaHall:
     def __init__(self, movie_title: str, total_seats: int, ticket_price: float) -> None:
         self.movie_title = movie_title
         self.total_seats = total_seats
@@ -7,13 +7,15 @@ class CinemaHall():
 
     @property
     def booked_seats(self) -> list:
-        return self.__booked_seats[:] #срез создает список-копию
+        return self.__booked_seats.copy()
+    
     @property
     def available_seats(self) -> int:
         return self.total_seats - len(self.__booked_seats) 
+    
     @property
     def income(self) -> float:
-        return len(self.__booked_seats)*self.ticket_price
+        return len(self.__booked_seats) * self.ticket_price
     
     def book_seat(self, seat_number: int) -> None:
         if seat_number < 1 or seat_number > self.total_seats:
