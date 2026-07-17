@@ -1,4 +1,4 @@
-#first task "Калькулятор"
+# first task "Калькулятор"
 
 
 while True:
@@ -9,25 +9,25 @@ while True:
     if arithmetic_operation == "Exit":
         break
     elif arithmetic_operation == "+":
-        result = first_number + second_number  
+        result = first_number + second_number
     elif arithmetic_operation == "-":
-        result = first_number - second_number   
+        result = first_number - second_number
     elif arithmetic_operation == "*":
-        result = first_number * second_number        
+        result = first_number * second_number
     elif arithmetic_operation == "/":
         if second_number == 0:
             print("Сan't divide by zero")
             continue
         else:
-            result = first_number / second_number       
+            result = first_number / second_number
     elif arithmetic_operation == "**":
-        result = first_number ** second_number
+        result = first_number**second_number
     else:
         print("Invalid operation. Please enter one of +, -, *, /, **")
         continue
     print(f"Result: {result}")
 
-#second task "Облік витрат за категоріями"
+# second task "Облік витрат за категоріями"
 
 user_balance = float(input("Enter your balance: "))
 expenses_by_category = {"Food:": 0, "Games": 0}
@@ -38,7 +38,7 @@ while True:
 
     if category == "Exit":
         break
-    
+
     expense = float(input("Enter the amount of costs: "))
     if expense > user_balance:
         print("Insufficient funds")

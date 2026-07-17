@@ -1,19 +1,19 @@
-#task one "логінування користувача"
+# task one "логінування користувача"
 user_full_name = input("Введіть ваше повне ім'я через пробіл: ")
-#.title() переводить кожне перше слово у списку у верхній регістр
+# .title() переводить кожне перше слово у списку у верхній регістр
 user_full_name = user_full_name.title()
 # .split() роздліяє строку на окремі слова або списки, відділяє її певним обраним знаком і повертає як список
 user_full_name = user_full_name.split()
 
 if not user_full_name:
     print("помилка, ви не ввели ваше повне ім'я")
-else: 
-#for перебирає елементи у списку
-#.join() об'єднує елементи списку в одну строку за вказаним роздаленням
+else:
+    # for перебирає елементи у списку
+    # .join() об'єднує елементи списку в одну строку за вказаним роздаленням
     user_initials = " ".join([word[0] for word in user_full_name])
     print(f"Ініціали: {user_initials}")
 
-    
+
 # task two "Маскування email"
 
 user_email = input("Заповніть інофрмацію про свою пошту: ")
@@ -26,23 +26,25 @@ else:
     user_email_name, user_domain = user_email.split("@")
 
     if len(user_email_name) > 2:
-        #виділяє перший і останній елемент ім'я користувача, рахує решту символів й змінює їх на *
-        masked_user_email_name = user_email_name[0] + "*"*(len(user_email_name)-2) + user_email_name[-1]                                                                                             
+        # виділяє перший і останній елемент ім'я користувача, рахує решту символів й змінює їх на *
+        masked_user_email_name = (
+            user_email_name[0] + "*" * (len(user_email_name) - 2) + user_email_name[-1]
+        )
     print(f"{masked_user_email_name}@{user_domain}")
 
 
-#task 3 Додавання унікального значення (створи свій set())
+# task 3 Додавання унікального значення (створи свій set())
 
-registered_values = [1,2,3,4,5]
+registered_values = [1, 2, 3, 4, 5]
 user_number = int(input("Яке число ви хочете додати?: "))
 
 print("Ось як виглядає список до змін:", registered_values)
 if user_number in registered_values:
-    
+
     print("Це число вже існує, залишаємо список як є: ", registered_values)
-    
+
 else:
-    
+
     registered_values.append(user_number)
     print("Змінили список, тепер він виглядає так: ", registered_values)
 
@@ -74,11 +76,11 @@ second_user_tags.update(second_user_interests_list)
 
 print(f"Теги першого користувача: {first_user_interests}")
 print(f"Теги другого користувача: {second_user_interests}")
-print(f"Спільні: {first_user_tags&second_user_tags}")
-print(f"Унікальні: {first_user_tags^second_user_tags}")
+print(f"Спільні: {first_user_tags & second_user_tags}")
+print(f"Унікальні: {first_user_tags ^ second_user_tags}")
 
 
-#task 5 Обробка рядка з числами
+# task 5 Обробка рядка з числами
 
 user_numbers = input("Введіть числа через пробіл: ")
 
@@ -86,7 +88,7 @@ user_numbers_list = user_numbers.split()
 three_numbers_sum = 0
 only_numbers_list = []
 for number in user_numbers_list:
-    #.isdigit() повертає True, якщо рядок складається лише з цифр..
+    # .isdigit() повертає True, якщо рядок складається лише з цифр..
     if number.isdigit():
         only_numbers_list.append(int(number))
     else:
