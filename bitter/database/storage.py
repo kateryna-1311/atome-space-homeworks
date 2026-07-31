@@ -1,10 +1,12 @@
 from typing import TypedDict
 
+
 class User(TypedDict):
     name: str
     posts: list[int]
     followers: list[str]
     following: list[str]
+
 
 class Post(TypedDict):
     id: int
@@ -13,6 +15,7 @@ class Post(TypedDict):
     likes: list[str]
     comments: list[str]
     views: int
+
 
 users: dict[str, User] = {
     "elonmusk": {
@@ -138,7 +141,16 @@ posts: list[Post] = [
         "id": 8,
         "author": "sama",
         "content": "The intelligence age has begun.",
-        "likes": ["elonmusk", "billgates", "karpathy", "lexfridman", "naval", "mrbeast", "zuck", "guido"],
+        "likes": [
+            "elonmusk",
+            "billgates",
+            "karpathy",
+            "lexfridman",
+            "naval",
+            "mrbeast",
+            "zuck",
+            "guido",
+        ],
         "comments": [],
         "views": 0,
     },
@@ -154,7 +166,17 @@ posts: list[Post] = [
         "id": 10,
         "author": "guido",
         "content": "Readability counts.",
-        "likes": ["elonmusk", "sama", "karpathy", "billgates", "lexfridman", "zuck", "mrbeast", "naval", "geohot"],
+        "likes": [
+            "elonmusk",
+            "sama",
+            "karpathy",
+            "billgates",
+            "lexfridman",
+            "zuck",
+            "mrbeast",
+            "naval",
+            "geohot",
+        ],
         "comments": [],
         "views": 0,
     },

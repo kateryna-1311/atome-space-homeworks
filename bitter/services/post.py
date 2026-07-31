@@ -1,4 +1,5 @@
-from database.storage import users, posts, Post
+from database.storage import Post, posts, users
+
 
 def create_post(author: str, content: str) -> bool:
     """
@@ -19,12 +20,13 @@ def create_post(author: str, content: str) -> bool:
         "content": content,
         "likes": [],
         "comments": [],
-        "views": 0
+        "views": 0,
     }
     posts.append(post)
     users[author]["posts"].append(post_id)
     return True
-    
+
+
 def remove_post(posts: list, author: str, post_id: str) -> bool:
     """
     Remove post after validation.
@@ -32,14 +34,15 @@ def remove_post(posts: list, author: str, post_id: str) -> bool:
     Returns True if successful, False otherwise.
     """
     for post in posts:
-        if post['id'] == post_id:
-            if post['author'] != author:
+        if post["id"] == post_id:
+            if post["author"] != author:
                 return False
             posts.remove(post)
-            if post_id in users[author]['posts']:
-                users[author]['posts'].remove(post_id)
+            if post_id in users[author]["posts"]:
+                users[author]["posts"].remove(post_id)
             return True
     return False
+
 
 def edit_post(posts: list, author: str, edit_id: str, edited_post: str) -> bool:
     """
@@ -48,13 +51,14 @@ def edit_post(posts: list, author: str, edit_id: str, edited_post: str) -> bool:
     Returns True if successful, False otherwise.
     """
     for post in posts:
-        if post['id'] == edit_id:
-            if post['author'] != author:
+        if post["id"] == edit_id:
+            if post["author"] != author:
                 return False
     if not post:
         return False
-    post['content'] = edited_post
+    post["content"] = edited_post
     return True
+
 
 def post_views(posts: list, post_id: int, current_user: str) -> bool:
     """
@@ -70,6 +74,7 @@ def post_views(posts: list, post_id: int, current_user: str) -> bool:
             return False
     return False
 
+
 def _validate(content: str) -> bool:
     """Validates post content: ensures it's not empty, under 280 chars and clean of forbidden words."""
     if not content:
@@ -77,9 +82,21 @@ def _validate(content: str) -> bool:
     if any(word in _FORBIDDEN_WORDS for word in content):
         return False
     if len(content) > _MAX_CONTENT_LENGHT:
-        return False  
+        return False
     return True
 
-_MAX_CONTENT_LENGHT = 280 
-_FORBIDDEN_WORDS = ["faggot", "nigger", "nigga", "chink", "kike", "retard", 
-                   "cunt", "tranny","fuck","shit", "bitch"]
+
+_MAX_CONTENT_LENGHT = 280
+_FORBIDDEN_WORDS = [
+    "faggot",
+    "nigger",
+    "nigga",
+    "chink",
+    "kike",
+    "retard",
+    "cunt",
+    "tranny",
+    "fuck",
+    "shit",
+    "bitch",
+]
