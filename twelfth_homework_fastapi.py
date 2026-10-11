@@ -8,6 +8,13 @@ users = [
 ]
 
 
+class User(BaseModel):
+    id: int
+    name: str
+    email: EmailStr
+    age: int
+
+
 class UserCreate(BaseModel):
     name: str
     email: EmailStr
@@ -22,7 +29,7 @@ async def get_users():
     return users
 
 
-@app.get("/users/{user_id}")
+@app.get("/users/{user_id}", response_model=User)
 async def find_user(user_id: int) -> dict:
     for user in users:
         if user["id"] == user_id:
@@ -32,7 +39,7 @@ async def find_user(user_id: int) -> dict:
     )
 
 
-@app.post("/users")
+@app.post("/users", status_code=status.HTTP_201_CREATED)
 async def user_create(user: UserCreate):
     new_user = {"id": len(users) + 1, **user.model_dump()}
     users.append(new_user)
@@ -40,7 +47,7 @@ async def user_create(user: UserCreate):
 
 
 @app.delete("/users/{user_id}")
-async def delete_user(user_id: int) -> dict:
+async def delete_user(user_id: int) -> dict[str, str]:
     for user in users:
         if user["id"] == user_id:
             users.remove(user)
